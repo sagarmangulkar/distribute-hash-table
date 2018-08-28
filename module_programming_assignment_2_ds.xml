@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_programming_assignment_2_ds" default="compile.module.programming_assignment_2_ds">
+  <dirname property="module.programming_assignment_2_ds.basedir" file="${ant.file.module_programming_assignment_2_ds}"/>
+  
+  
+  <property name="compiler.args.programming_assignment_2_ds" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="programming_assignment_2_ds.output.dir" value="${module.programming_assignment_2_ds.basedir}/out/production/Programming_Assignment_2_DS"/>
+  <property name="programming_assignment_2_ds.testoutput.dir" value="${module.programming_assignment_2_ds.basedir}/out/test/Programming_Assignment_2_DS"/>
+  
+  <path id="programming_assignment_2_ds.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="programming_assignment_2_ds.module.production.classpath">
+    <path refid="library.libthrift-0.10.0.classpath"/>
+  </path>
+  
+  <path id="programming_assignment_2_ds.runtime.production.module.classpath">
+    <pathelement location="${programming_assignment_2_ds.output.dir}"/>
+    <path refid="library.libthrift-0.10.0.classpath"/>
+  </path>
+  
+  <path id="programming_assignment_2_ds.module.classpath">
+    <pathelement location="${programming_assignment_2_ds.output.dir}"/>
+    <path refid="library.libthrift-0.10.0.classpath"/>
+  </path>
+  
+  <path id="programming_assignment_2_ds.runtime.module.classpath">
+    <pathelement location="${programming_assignment_2_ds.testoutput.dir}"/>
+    <pathelement location="${programming_assignment_2_ds.output.dir}"/>
+    <path refid="library.libthrift-0.10.0.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.programming_assignment_2_ds">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.programming_assignment_2_ds">
+    <patternset refid="excluded.from.module.programming_assignment_2_ds"/>
+  </patternset>
+  
+  <path id="programming_assignment_2_ds.module.sourcepath">
+    <dirset dir="${module.programming_assignment_2_ds.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.programming_assignment_2_ds" depends="compile.module.programming_assignment_2_ds.production,compile.module.programming_assignment_2_ds.tests" description="Compile module Programming_Assignment_2_DS"/>
+  
+  <target name="compile.module.programming_assignment_2_ds.production" description="Compile module Programming_Assignment_2_DS; production classes">
+    <mkdir dir="${programming_assignment_2_ds.output.dir}"/>
+    <javac destdir="${programming_assignment_2_ds.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true">
+      <compilerarg line="${compiler.args.programming_assignment_2_ds}"/>
+      <bootclasspath refid="programming_assignment_2_ds.module.bootclasspath"/>
+      <classpath refid="programming_assignment_2_ds.module.production.classpath"/>
+      <src refid="programming_assignment_2_ds.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.programming_assignment_2_ds"/>
+    </javac>
+    
+    <copy todir="${programming_assignment_2_ds.output.dir}">
+      <fileset dir="${module.programming_assignment_2_ds.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.programming_assignment_2_ds.tests" depends="compile.module.programming_assignment_2_ds.production" description="compile module Programming_Assignment_2_DS; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.programming_assignment_2_ds" description="cleanup module">
+    <delete dir="${programming_assignment_2_ds.output.dir}"/>
+    <delete dir="${programming_assignment_2_ds.testoutput.dir}"/>
+  </target>
+</project>
